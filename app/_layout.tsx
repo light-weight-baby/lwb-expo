@@ -22,7 +22,7 @@ export default function Layout() {
   });
 
   if (!loaded) {
-    return <SplashScreen />;
+    SplashScreen.preventAutoHideAsync();
   }
 
   return (
