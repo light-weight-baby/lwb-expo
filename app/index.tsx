@@ -32,6 +32,8 @@ export default function Home() {
         Go to user page
       </Button>
 
+      <Button onPress={() => router.push("/register")}>Get Started</Button>
+
       <YStack space="$5">
         <YGroup
           bordered
