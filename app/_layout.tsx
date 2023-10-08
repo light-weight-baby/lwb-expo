@@ -7,7 +7,6 @@ import {
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
 import { MySafeAreaView } from "../components/MySafeAreaView";
@@ -22,7 +21,7 @@ export default function Layout() {
   });
 
   if (!loaded) {
-    SplashScreen.preventAutoHideAsync();
+    <SplashScreen />;
   }
 
   return (
