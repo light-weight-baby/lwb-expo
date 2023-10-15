@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Linking } from "react-native";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { Eye, EyeOff } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
 import { Button, H3, XStack, YStack } from "tamagui";
 import { Text } from "tamagui";
 
@@ -14,8 +16,28 @@ export default function User() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [data, setData] = useState("");
+  const [result, setResult] = useState(null);
 
+  const link = "http://localhost:8000/oauth/google";
   const [hidePass, setHidePass] = useState(true);
+
+  const handleOpenURL = ({ url }) => {
+    if (url.indexOf("?id") !== -1) {
+      if (url) setData(url);
+    }
+    console.log(url);
+  };
+
+  const _handlePressButtonAsync = async () => {
+    const result = await WebBrowser.openBrowserAsync(link);
+    setResult(result);
+  };
+
+  useEffect(() => {
+    // Your code here
+    Linking.addEventListener("url", handleOpenURL);
+  }, []);
 
   const {
     handleSubmit,
@@ -28,6 +50,12 @@ export default function User() {
   //   } else {
   //     console.log("Fill out all fields");
   //   }
+  // };
+
+  // const handleGoogle = () => {
+  //   fetch("http://localhost:8000/api/oauth/google", {
+  //     method: "GET"
+  //   });
   // };
 
   const onSubmit = (data) => {
@@ -54,7 +82,6 @@ export default function User() {
           max={10}
           min={3}
           returnKeyType="next"
-          autoCapitalize
           placeholder="Name"
         />
         {errors.Name && (
@@ -112,6 +139,14 @@ export default function User() {
         >
           Sign up
         </Button>
+        <Button
+          theme="green"
+          marginTop="$10"
+          onPress={_handlePressButtonAsync}
+        >
+          Google
+        </Button>
+        <Text>{result && JSON.stringify(result)}</Text>
       </YStack>
     </MyStack>
   );
