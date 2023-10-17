@@ -24,11 +24,8 @@ const animations = createAnimations({
     stiffness: 250
   }
 });
-
 const headingFont = createInterFont();
-
 const bodyFont = createInterFont();
-
 const config = createTamagui({
   animations,
   defaultTheme: "dark",
