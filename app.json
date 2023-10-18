@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "tamagui-app",
+    "scheme": "lwyb",
     "userInterfaceStyle": "automatic",
     "splash": {
       "backgroundColor": "#ddffe2",
@@ -9,6 +9,12 @@
     },
     "icon": "./assets/icon.png",
     "name": "lwyb-expo",
-    "slug": "lwyb-expo"
+    "slug": "lwyb-expo",
+    "android": {
+      "package": "com.lightweightbaby"
+    },
+    "ios": {
+      "bundleIdentifier": "com.lightweightbaby"
+    }
   }
 }
